@@ -15,7 +15,7 @@ namespace PryCertificacion0.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Certificación I NRC-7614.";
+            ViewBag.Message = "Certificación I NRC-7614. Prueba de Sincronización";
 
             return View();
         }

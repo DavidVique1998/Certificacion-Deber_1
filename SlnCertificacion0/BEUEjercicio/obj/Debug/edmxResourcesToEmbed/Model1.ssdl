@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="alumno">
+    <Key>
+      <PropertyRef Name="idalumno" />
+    </Key>
+    <Property Name="idalumno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombres" Type="varchar" MaxLength="50" />
+    <Property Name="apellidos" Type="varchar" MaxLength="50" />
+    <Property Name="cedula" Type="varchar" MaxLength="15" />
+    <Property Name="fecha_nacimiento" Type="date" />
+    <Property Name="lugar_nacimiento" Type="varchar" MaxLength="50" />
+    <Property Name="sexo" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="area">
+    <Key>
+      <PropertyRef Name="idarea" />
+    </Key>
+    <Property Name="idarea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" />
+    <Property Name="cordinador" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="calificacion">
+    <Key>
+      <PropertyRef Name="idcalificacion" />
+    </Key>
+    <Property Name="idcalificacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="valor" Type="decimal" Precision="4" Scale="2" />
+    <Property Name="fecha" Type="datetime" />
+    <Property Name="unidad" Type="smallint" />
+    <Property Name="idmatricula" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="materia">
+    <Key>
+      <PropertyRef Name="idmateria" />
+    </Key>
+    <Property Name="idmateria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" />
+    <Property Name="nrc" Type="varbinary" MaxLength="5" />
+    <Property Name="creditos" Type="smallint" />
+    <Property Name="idarea" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="matricula">
+    <Key>
+      <PropertyRef Name="idmatricula" />
+    </Key>
+    <Property Name="idmatricula" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fecha" Type="datetime" />
+    <Property Name="costo" Type="decimal" Precision="4" Scale="2" />
+    <Property Name="estado" Type="nchar" MaxLength="1" />
+    <Property Name="tipo" Type="nchar" MaxLength="1" />
+    <Property Name="idalumno" Type="int" Nullable="false" />
+    <Property Name="idmateria" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_calificacion_matricula">
+    <End Role="matricula" Type="Self.matricula" Multiplicity="1" />
+    <End Role="calificacion" Type="Self.calificacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="matricula">
+        <PropertyRef Name="idmatricula" />
+      </Principal>
+      <Dependent Role="calificacion">
+        <PropertyRef Name="idmatricula" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_materia_area">
+    <End Role="area" Type="Self.area" Multiplicity="1" />
+    <End Role="materia" Type="Self.materia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="area">
+        <PropertyRef Name="idarea" />
+      </Principal>
+      <Dependent Role="materia">
+        <PropertyRef Name="idarea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_matricula_alumno">
+    <End Role="alumno" Type="Self.alumno" Multiplicity="1" />
+    <End Role="matricula" Type="Self.matricula" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="alumno">
+        <PropertyRef Name="idalumno" />
+      </Principal>
+      <Dependent Role="matricula">
+        <PropertyRef Name="idalumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_matricula_materia">
+    <End Role="materia" Type="Self.materia" Multiplicity="1" />
+    <End Role="matricula" Type="Self.matricula" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="materia">
+        <PropertyRef Name="idmateria" />
+      </Principal>
+      <Dependent Role="matricula">
+        <PropertyRef Name="idmateria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBModelStoreContainer">
+    <EntitySet Name="alumno" EntityType="Self.alumno" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="area" EntityType="Self.area" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="calificacion" EntityType="Self.calificacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="materia" EntityType="Self.materia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="matricula" EntityType="Self.matricula" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_calificacion_matricula" Association="Self.FK_calificacion_matricula">
+      <End Role="matricula" EntitySet="matricula" />
+      <End Role="calificacion" EntitySet="calificacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_materia_area" Association="Self.FK_materia_area">
+      <End Role="area" EntitySet="area" />
+      <End Role="materia" EntitySet="materia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_matricula_alumno" Association="Self.FK_matricula_alumno">
+      <End Role="alumno" EntitySet="alumno" />
+      <End Role="matricula" EntitySet="matricula" />
+    </AssociationSet>
+    <AssociationSet Name="FK_matricula_materia" Association="Self.FK_matricula_materia">
+      <End Role="materia" EntitySet="materia" />
+      <End Role="matricula" EntitySet="matricula" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

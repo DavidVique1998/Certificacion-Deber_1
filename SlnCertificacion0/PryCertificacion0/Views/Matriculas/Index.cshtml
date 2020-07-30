@@ -1,0 +1,63 @@
+﻿@model IEnumerable<BEUEjercicio.matricula>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.costo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tipo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.alumno.nombres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.materia.nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.costo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipo)
+        </td>
+        <td>
+            @item.alumno.ToString();
+        </td>
+        <td>
+            @item.materia.ToString();
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idmatricula },htmlAttributes:new {@class="btn btn-md btn-warming span glyphicon glyphicon-pencil",@title="Editar" }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idmatricula }, htmlAttributes: new { @class = "btn btn-md btn-primary span glyphicon glyphicon-search", @title = "Ver" }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idmatricula }, htmlAttributes: new { @class = "btn btn-md btn-danger span glyphicon glyphicon-trash", @title = "Borrar" })
+        </td>
+    </tr>
+}
+
+</table>

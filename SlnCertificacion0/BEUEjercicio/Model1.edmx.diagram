@@ -14,6 +14,7 @@
         <AssociationConnector Association="DBModel.FK_materia_area" ManuallyRouted="false" />
         <AssociationConnector Association="DBModel.FK_calificacion_matricula" ManuallyRouted="false" />
         <AssociationConnector Association="DBModel.FK_matricula_materia" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DBModel.maquinaria" Width="1.5" PointX="2.875" PointY="4.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

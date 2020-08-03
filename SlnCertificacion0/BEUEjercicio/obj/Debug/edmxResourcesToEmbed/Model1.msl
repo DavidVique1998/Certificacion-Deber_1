@@ -58,5 +58,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="maquinarias">
+      <EntityTypeMapping TypeName="DBModel.maquinaria">
+        <MappingFragment StoreEntitySet="maquinaria">
+          <ScalarProperty Name="porcentaje_depresiacion" ColumnName="porcentaje_depresiacion" />
+          <ScalarProperty Name="fecha_adquisicion" ColumnName="fecha_adquisicion" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="codigo" ColumnName="codigo" />
+          <ScalarProperty Name="idmaquinaria" ColumnName="idmaquinaria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

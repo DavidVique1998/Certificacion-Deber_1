@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="alumno">
           <Key>
             <PropertyRef Name="idalumno" />
@@ -34,6 +34,16 @@
           <Property Name="fecha" Type="datetime" />
           <Property Name="unidad" Type="smallint" />
           <Property Name="idmatricula" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="maquinaria">
+          <Key>
+            <PropertyRef Name="idmaquinaria" />
+          </Key>
+          <Property Name="idmaquinaria" Type="int" Nullable="false" />
+          <Property Name="codigo" Type="varchar" MaxLength="25" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_adquisicion" Type="date" />
+          <Property Name="porcentaje_depresiacion" Type="decimal" Precision="4" Scale="2" />
         </EntityType>
         <EntityType Name="materia">
           <Key>
@@ -109,6 +119,7 @@
           <EntitySet Name="alumno" EntityType="Self.alumno" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="area" EntityType="Self.area" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="calificacion" EntityType="Self.calificacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="maquinaria" EntityType="Self.maquinaria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="materia" EntityType="Self.materia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="matricula" EntityType="Self.matricula" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_calificacion_matricula" Association="Self.FK_calificacion_matricula">
@@ -128,8 +139,7 @@
             <End Role="matricula" EntitySet="matricula" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -263,7 +273,18 @@
             <End Role="materia" EntitySet="materias" />
             <End Role="matricula" EntitySet="matriculas" />
           </AssociationSet>
+          <EntitySet Name="maquinarias" EntityType="DBModel.maquinaria" />
         </EntityContainer>
+        <EntityType Name="maquinaria">
+          <Key>
+            <PropertyRef Name="idmaquinaria" />
+          </Key>
+          <Property Name="idmaquinaria" Type="Int32" Nullable="false" />
+          <Property Name="codigo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_adquisicion" Type="DateTime" Precision="0" />
+          <Property Name="porcentaje_depresiacion" Type="Decimal" Precision="4" Scale="2" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -324,6 +345,17 @@
                 <ScalarProperty Name="tipo" ColumnName="tipo" />
                 <ScalarProperty Name="idalumno" ColumnName="idalumno" />
                 <ScalarProperty Name="idmateria" ColumnName="idmateria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="maquinarias">
+            <EntityTypeMapping TypeName="DBModel.maquinaria">
+              <MappingFragment StoreEntitySet="maquinaria">
+                <ScalarProperty Name="porcentaje_depresiacion" ColumnName="porcentaje_depresiacion" />
+                <ScalarProperty Name="fecha_adquisicion" ColumnName="fecha_adquisicion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="idmaquinaria" ColumnName="idmaquinaria" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

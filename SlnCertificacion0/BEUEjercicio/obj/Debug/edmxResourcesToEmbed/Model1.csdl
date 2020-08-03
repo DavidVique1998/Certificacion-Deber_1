@@ -130,5 +130,16 @@
       <End Role="materia" EntitySet="materias" />
       <End Role="matricula" EntitySet="matriculas" />
     </AssociationSet>
+    <EntitySet Name="maquinarias" EntityType="DBModel.maquinaria" />
   </EntityContainer>
+  <EntityType Name="maquinaria">
+    <Key>
+      <PropertyRef Name="idmaquinaria" />
+    </Key>
+    <Property Name="idmaquinaria" Type="Int32" Nullable="false" />
+    <Property Name="codigo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_adquisicion" Type="DateTime" Precision="0" />
+    <Property Name="porcentaje_depresiacion" Type="Decimal" Precision="4" Scale="2" />
+  </EntityType>
 </Schema>

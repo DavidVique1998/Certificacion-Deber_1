@@ -30,6 +30,16 @@
     <Property Name="unidad" Type="smallint" />
     <Property Name="idmatricula" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="maquinaria">
+    <Key>
+      <PropertyRef Name="idmaquinaria" />
+    </Key>
+    <Property Name="idmaquinaria" Type="int" Nullable="false" />
+    <Property Name="codigo" Type="varchar" MaxLength="25" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" />
+    <Property Name="fecha_adquisicion" Type="date" />
+    <Property Name="porcentaje_depresiacion" Type="decimal" Precision="4" Scale="2" />
+  </EntityType>
   <EntityType Name="materia">
     <Key>
       <PropertyRef Name="idmateria" />
@@ -104,6 +114,7 @@
     <EntitySet Name="alumno" EntityType="Self.alumno" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="area" EntityType="Self.area" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="calificacion" EntityType="Self.calificacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="maquinaria" EntityType="Self.maquinaria" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="materia" EntityType="Self.materia" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="matricula" EntityType="Self.matricula" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_calificacion_matricula" Association="Self.FK_calificacion_matricula">

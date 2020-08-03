@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BEUEjercicio.Queris
 {
-    public class MatriculaBLL
+    public class MaquinariaBLL
     {
-        public static void Create(matricula a)
+        //BLL Bussiness Logic Layer
+        //Capa de Logica del Negocio
+
+        public static void Create(maquinaria a)
         {
             using (Entities db = new Entities())
             {
@@ -16,9 +21,7 @@ namespace BEUEjercicio.Queris
                 {
                     try
                     {
-                        materia mt = db.materias.Find(a.idmateria);
-                        Config(a, mt);
-                        db.matriculas.Add(a);
+                        db.maquinarias.Add(a);
                         db.SaveChanges();
                         transaction.Commit();
                     }
@@ -31,31 +34,13 @@ namespace BEUEjercicio.Queris
             }
         }
 
-        private static void Config(matricula a, materia mt)
-        {
-            a.fecha = DateTime.Now;
-            a.estado = "1"; //Creada
-            if (a.tipo.Equals("P"))
-            {
-                a.costo = 0;
-            }
-            else if (a.tipo.Equals("S"))
-            {
-                a.costo = (decimal)(12.25 * mt.creditos);
-            }
-            else
-            {
-                a.costo = (decimal)(24.50 * mt.creditos);
-            }
-        }
-
-        public static matricula Get(int? id)
+        public static maquinaria Get(int? id)
         {
             Entities db = new Entities();
-            return db.matriculas.Find(id);
+            return db.maquinarias.Find(id);
         }
 
-        public static void Update(matricula matricula)
+        public static void Update(maquinaria Maquinaria)
         {
             using (Entities db = new Entities())
             {
@@ -63,10 +48,8 @@ namespace BEUEjercicio.Queris
                 {
                     try
                     {
-                        materia mt = db.materias.Find(matricula.idmateria);
-                        Config(matricula, mt);
-                        db.matriculas.Attach(matricula);
-                        db.Entry(matricula).State = System.Data.Entity.EntityState.Modified;
+                        db.maquinarias.Attach(Maquinaria);
+                        db.Entry(Maquinaria).State = System.Data.Entity.EntityState.Modified;
                         db.SaveChanges();
                         transaction.Commit();
                     }
@@ -87,8 +70,8 @@ namespace BEUEjercicio.Queris
                 {
                     try
                     {
-                        matricula matricula = db.matriculas.Find(id);
-                        db.Entry(matricula).State = System.Data.Entity.EntityState.Deleted;
+                        maquinaria Maquinaria = db.maquinarias.Find(id);
+                        db.Entry(Maquinaria).State = System.Data.Entity.EntityState.Deleted;
                         db.SaveChanges();
                         transaction.Commit();
                     }
@@ -101,16 +84,26 @@ namespace BEUEjercicio.Queris
             }
         }
 
-        public static List<matricula> List()
+        public static List<maquinaria> List()
         {
             Entities db = new Entities();
-            return db.matriculas.ToList();
+            return db.maquinarias.ToList();
         }
 
-        public static List<matricula> List(int id)
+        public static List<maquinaria> ListToNames()
         {
             Entities db = new Entities();
-            return db.matriculas.Where(x => x.alumno.idalumno == id).ToList();
+            List<maquinaria> resultado = new List<maquinaria>();
+            //db.maquinarias.ToList().ForEach(x =>
+            //    resultado.Add(
+            //        new maquinaria
+            //        {
+            //            nombre = x.nrc + " " + x.nombre,
+            //            idMaquinaria = x.idMaquinaria
+            //        }));
+            return resultado;
         }
+
+
     }
 }

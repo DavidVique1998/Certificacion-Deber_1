@@ -31,5 +31,6 @@ namespace BEUEjercicio
         public virtual DbSet<materia> materias { get; set; }
         public virtual DbSet<matricula> matriculas { get; set; }
         public virtual DbSet<maquinaria> maquinarias { get; set; }
+        public virtual DbSet<tipoBeca> tipoBecas { get; set; }
     }
 }

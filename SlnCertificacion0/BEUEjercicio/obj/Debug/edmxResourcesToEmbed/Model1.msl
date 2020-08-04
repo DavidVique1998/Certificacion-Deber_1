@@ -69,5 +69,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tipoBecas">
+      <EntityTypeMapping TypeName="DBModel.tipoBeca">
+        <MappingFragment StoreEntitySet="tipoBecas">
+          <ScalarProperty Name="documentos_respaldo" ColumnName="documentos_respaldo" />
+          <ScalarProperty Name="tipo_calificacion_necesaria" ColumnName="tipo_calificacion_necesaria" />
+          <ScalarProperty Name="porcentaje_matricula" ColumnName="porcentaje_matricula" />
+          <ScalarProperty Name="requisitos_especificos" ColumnName="requisitos_especificos" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="idTipoBecas" ColumnName="idTipoBecas" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -67,6 +67,17 @@
           <Property Name="idalumno" Type="int" Nullable="false" />
           <Property Name="idmateria" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="tipoBecas">
+          <Key>
+            <PropertyRef Name="idTipoBecas" />
+          </Key>
+          <Property Name="idTipoBecas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="requisitos_especificos" Type="varchar" MaxLength="250" />
+          <Property Name="porcentaje_matricula" Type="int" Nullable="false" />
+          <Property Name="tipo_calificacion_necesaria" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="documentos_respaldo" Type="varchar" MaxLength="250" />
+        </EntityType>
         <Association Name="FK_calificacion_matricula">
           <End Role="matricula" Type="Self.matricula" Multiplicity="1" />
           <End Role="calificacion" Type="Self.calificacion" Multiplicity="*" />
@@ -122,6 +133,7 @@
           <EntitySet Name="maquinaria" EntityType="Self.maquinaria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="materia" EntityType="Self.materia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="matricula" EntityType="Self.matricula" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipoBecas" EntityType="Self.tipoBecas" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_calificacion_matricula" Association="Self.FK_calificacion_matricula">
             <End Role="matricula" EntitySet="matricula" />
             <End Role="calificacion" EntitySet="calificacion" />
@@ -274,6 +286,7 @@
             <End Role="matricula" EntitySet="matriculas" />
           </AssociationSet>
           <EntitySet Name="maquinarias" EntityType="DBModel.maquinaria" />
+          <EntitySet Name="tipoBecas" EntityType="DBModel.tipoBeca" />
         </EntityContainer>
         <EntityType Name="maquinaria">
           <Key>
@@ -284,6 +297,17 @@
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="fecha_adquisicion" Type="DateTime" Precision="0" />
           <Property Name="porcentaje_depresiacion" Type="Decimal" Precision="4" Scale="2" />
+        </EntityType>
+        <EntityType Name="tipoBeca">
+          <Key>
+            <PropertyRef Name="idTipoBecas" />
+          </Key>
+          <Property Name="idTipoBecas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="requisitos_especificos" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="porcentaje_matricula" Type="Int32" Nullable="false" />
+          <Property Name="tipo_calificacion_necesaria" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="documentos_respaldo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -356,6 +380,18 @@
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="codigo" ColumnName="codigo" />
                 <ScalarProperty Name="idmaquinaria" ColumnName="idmaquinaria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipoBecas">
+            <EntityTypeMapping TypeName="DBModel.tipoBeca">
+              <MappingFragment StoreEntitySet="tipoBecas">
+                <ScalarProperty Name="documentos_respaldo" ColumnName="documentos_respaldo" />
+                <ScalarProperty Name="tipo_calificacion_necesaria" ColumnName="tipo_calificacion_necesaria" />
+                <ScalarProperty Name="porcentaje_matricula" ColumnName="porcentaje_matricula" />
+                <ScalarProperty Name="requisitos_especificos" ColumnName="requisitos_especificos" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idTipoBecas" ColumnName="idTipoBecas" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

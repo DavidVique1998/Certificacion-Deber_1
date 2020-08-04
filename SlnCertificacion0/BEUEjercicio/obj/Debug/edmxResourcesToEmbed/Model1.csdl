@@ -131,6 +131,7 @@
       <End Role="matricula" EntitySet="matriculas" />
     </AssociationSet>
     <EntitySet Name="maquinarias" EntityType="DBModel.maquinaria" />
+    <EntitySet Name="tipoBecas" EntityType="DBModel.tipoBeca" />
   </EntityContainer>
   <EntityType Name="maquinaria">
     <Key>
@@ -141,5 +142,16 @@
     <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="fecha_adquisicion" Type="DateTime" Precision="0" />
     <Property Name="porcentaje_depresiacion" Type="Decimal" Precision="4" Scale="2" />
+  </EntityType>
+  <EntityType Name="tipoBeca">
+    <Key>
+      <PropertyRef Name="idTipoBecas" />
+    </Key>
+    <Property Name="idTipoBecas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="requisitos_especificos" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="porcentaje_matricula" Type="Int32" Nullable="false" />
+    <Property Name="tipo_calificacion_necesaria" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="documentos_respaldo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

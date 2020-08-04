@@ -62,6 +62,17 @@
     <Property Name="idalumno" Type="int" Nullable="false" />
     <Property Name="idmateria" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="tipoBecas">
+    <Key>
+      <PropertyRef Name="idTipoBecas" />
+    </Key>
+    <Property Name="idTipoBecas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="requisitos_especificos" Type="varchar" MaxLength="250" />
+    <Property Name="porcentaje_matricula" Type="int" Nullable="false" />
+    <Property Name="tipo_calificacion_necesaria" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="documentos_respaldo" Type="varchar" MaxLength="250" />
+  </EntityType>
   <Association Name="FK_calificacion_matricula">
     <End Role="matricula" Type="Self.matricula" Multiplicity="1" />
     <End Role="calificacion" Type="Self.calificacion" Multiplicity="*" />
@@ -117,6 +128,7 @@
     <EntitySet Name="maquinaria" EntityType="Self.maquinaria" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="materia" EntityType="Self.materia" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="matricula" EntityType="Self.matricula" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tipoBecas" EntityType="Self.tipoBecas" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_calificacion_matricula" Association="Self.FK_calificacion_matricula">
       <End Role="matricula" EntitySet="matricula" />
       <End Role="calificacion" EntitySet="calificacion" />

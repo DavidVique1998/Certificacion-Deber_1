@@ -185,6 +185,7 @@
     <Compile Include="Controllers\MaquinariaController.cs" />
     <Compile Include="Controllers\MateriaController.cs" />
     <Compile Include="Controllers\MatriculaController.cs" />
+    <Compile Include="Controllers\TipoBecaController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -162,6 +162,10 @@
     <Compile Include="Queris\MaquinariaBLL.cs" />
     <Compile Include="Queris\MateriaBLL.cs" />
     <Compile Include="Queris\MatriculaBLL.cs" />
+    <Compile Include="Queris\TipoBecaBLL.cs" />
+    <Compile Include="tipoBeca.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -175,6 +179,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BDDScript\DBEscolasticoScript.sql" />
+    <Content Include="BDDScript\DBTipoBecaScriptExamen.sql" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
